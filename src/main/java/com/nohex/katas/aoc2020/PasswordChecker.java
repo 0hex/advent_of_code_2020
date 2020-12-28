@@ -15,13 +15,16 @@ public class PasswordChecker {
    * @return How many of the supplied passwords are correct according to their policies.
    */
   public long countValidPasswords(Stream<String> input) {
-    return input.filter(this::checkPasswordAgainstPolicy).count();
+    return input
+        .filter(this::checkPasswordAgainstPolicy)
+        .count();
   }
 
   /**
    * Checks whether a password is valid against its policy.
    * <p>
-   * The input is provided as an encoded {@link PasswordPolicy}, a semi-colon, a space and a password.
+   * The input is provided as an encoded {@link PasswordPolicy}, a semi-colon, a space and a
+   * password.
    *
    * @param passwordAndPolicy The encoded password and policy.
    * @return Whether the password is valid according to the policy.
@@ -33,5 +36,4 @@ public class PasswordChecker {
     // Check the password against the policy.
     return new PasswordPolicy(encodedPolicy).isValid(password);
   }
-
 }

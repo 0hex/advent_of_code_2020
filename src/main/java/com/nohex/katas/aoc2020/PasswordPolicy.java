@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 class PasswordPolicy {
 
   private static final Pattern pattern = Pattern.compile("(\\d+)-(\\d+) ([a-z])");
-  private final int max;
-  private final int min;
+  private final int first;
+  private final int last;
   private final char letter;
 
   /**
@@ -25,11 +25,14 @@ class PasswordPolicy {
       throw new IllegalArgumentException("The policy could not be understood: " + encodedPolicy);
     }
 
-    min = Integer.parseInt(matcher.group(1));
-    max = Integer.parseInt(matcher.group(2));
-    if (max < min) {
-      throw new IllegalArgumentException(
-          "The maximum cannot be smaller than the minimum: " + encodedPolicy);
+    first = Integer.parseInt(matcher.group(1)) - 1;
+    if (first < 0) {
+      throw new IllegalArgumentException("First position is less than 1");
+    }
+
+    last = Integer.parseInt(matcher.group(2)) - 1;
+    if (last < first) {
+      throw new IllegalArgumentException("Last position is earlier than the first");
     }
 
     letter = matcher.group(3).charAt(0);
@@ -42,17 +45,8 @@ class PasswordPolicy {
    * @return Whether the password is valid.
    */
   boolean isValid(String password) {
-    int letterCount = 0;
-    for (char currentLetter : password.toCharArray()) {
-      if (currentLetter == letter) {
-        letterCount++;
-        // Short circuit.
-        if (letterCount > max) {
-          return false;
-        }
-      }
-    }
-
-    return letterCount >= min;
+    boolean firstHit = password.charAt(first) == letter;
+    boolean lastHit = password.charAt(last) == letter;
+    return firstHit ^ lastHit;
   }
 }

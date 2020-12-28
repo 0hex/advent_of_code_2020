@@ -22,7 +22,7 @@ class Day2SolutionTest extends SolutionTest {
 
     PasswordChecker sut = new PasswordChecker();
 
-    assertThat(sut.countValidPasswords(input)).isEqualTo(2);
+    assertThat(sut.countValidPasswords(input)).isEqualTo(1L);
   }
 
   @Test
@@ -31,9 +31,9 @@ class Day2SolutionTest extends SolutionTest {
     // Load input from file.
     Stream<String> input = getResourceAsStream("input-day_2.txt");
 
-    PasswordChecker sut = new PasswordChecker();
-    long count = sut.countValidPasswords(input);
-    assertThat(count).isGreaterThan(-1L);
+    long count = new PasswordChecker().countValidPasswords(input);
+
+    assertThat(count).isPositive();
 
     logger.info("The number of valid passwords is " + count);
   }

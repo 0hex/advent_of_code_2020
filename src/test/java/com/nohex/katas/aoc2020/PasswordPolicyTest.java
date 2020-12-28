@@ -12,18 +12,16 @@ class PasswordPolicyTest {
   @Test
   void given_aPolicy_when_aCompliantPasswordIsChecked_then_isValidReturnsTrue() {
     PasswordPolicy sut = new PasswordPolicy("1-3 a");
-    assertThat(sut.isValid("a")).isTrue();
-    assertThat(sut.isValid("aa")).isTrue();
     assertThat(sut.isValid("aaa")).isTrue();
-    assertThat(sut.isValid("ababa")).isTrue();
-    assertThat(sut.isValid(" aaa ")).isTrue();
+    assertThat(sut.isValid("aba")).isTrue();
+    assertThat(sut.isValid("acac")).isTrue();
   }
 
   @Test
   void given_aPolicy_when_aNonCompliantPasswordIsChecked_then_isValidReturnsFalse() {
     PasswordPolicy sut = new PasswordPolicy("1-3 a");
-    assertThat(sut.isValid("")).isFalse();
-    assertThat(sut.isValid("aaaa")).isFalse();
+    assertThat(sut.isValid("aac")).isFalse();
+    assertThat(sut.isValid("caa")).isFalse();
   }
 
   @Test
@@ -32,7 +30,7 @@ class PasswordPolicyTest {
     Stream.of(
         "1-3 a",
         "11-33 b",
-        "0-123456789 c"
+        "1-999 c"
     ).forEach(
         encodedPolicy ->
             assertThatNoException()
@@ -49,7 +47,7 @@ class PasswordPolicyTest {
         "a-3 1",
         "1-2a",
         "3-1 a"
-        ).forEach(
+    ).forEach(
         encodedPolicy ->
             assertThatIllegalArgumentException()
                 .isThrownBy(() -> new PasswordPolicy(encodedPolicy))
