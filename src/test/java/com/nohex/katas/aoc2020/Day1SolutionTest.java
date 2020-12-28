@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
-class Day1SolutionTest {
+class Day1SolutionTest extends SolutionTest {
 
   private static final Logger logger = Logger.getAnonymousLogger();
 
@@ -33,15 +33,11 @@ class Day1SolutionTest {
   @Test
   void given_theDay1AInput_when_theExpectedResultIsProvided_then_theAnswerIsGiven()
       throws IOException, URISyntaxException {
-    final int target = 2020;
-    final String fileName = "input-day_1.txt";
-
     // Load number list from file.
-    List<Integer> input = Files.readAllLines(
-        Paths.get(ClassLoader.getSystemResource(fileName).toURI())
-    ).stream()
+    List<Integer> input = getResourceAsStream("input-day_1.txt")
         .map(Integer::parseInt)
         .collect(Collectors.toList());
+    final int target = 2020;
 
     Optional<List<Integer>> result = new NumberGroupFinder().findForSum(target, input);
 
