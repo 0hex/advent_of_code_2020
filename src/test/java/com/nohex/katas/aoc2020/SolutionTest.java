@@ -20,7 +20,7 @@ abstract public class SolutionTest {
    * @throws URISyntaxException An error converting the resource path to a URI.
    * @throws IOException        An error trying to read the resource.
    */
-  static Stream<String> getResourceAsStream(String resourcePath)
+  public static Stream<String> getResourceAsStream(String resourcePath)
       throws URISyntaxException, IOException {
     Path path = Paths.get(ClassLoader.getSystemResource(resourcePath).toURI());
 

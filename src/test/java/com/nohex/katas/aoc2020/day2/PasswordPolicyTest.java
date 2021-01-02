@@ -1,9 +1,10 @@
-package com.nohex.katas.aoc2020;
+package com.nohex.katas.aoc2020.day2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
+import com.nohex.katas.aoc2020.day2.PasswordPolicy;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
@@ -12,16 +13,14 @@ class PasswordPolicyTest {
   @Test
   void given_aPolicy_when_aCompliantPasswordIsChecked_then_isValidReturnsTrue() {
     PasswordPolicy sut = new PasswordPolicy("1-3 a");
-    assertThat(sut.isValid("aaa")).isTrue();
-    assertThat(sut.isValid("aba")).isTrue();
-    assertThat(sut.isValid("acac")).isTrue();
+    assertThat(sut.isValid("aac")).isTrue();
+    assertThat(sut.isValid("caa")).isTrue();
   }
 
   @Test
   void given_aPolicy_when_aNonCompliantPasswordIsChecked_then_isValidReturnsFalse() {
     PasswordPolicy sut = new PasswordPolicy("1-3 a");
-    assertThat(sut.isValid("aac")).isFalse();
-    assertThat(sut.isValid("caa")).isFalse();
+    assertThat(sut.isValid("aca")).isFalse();
   }
 
   @Test

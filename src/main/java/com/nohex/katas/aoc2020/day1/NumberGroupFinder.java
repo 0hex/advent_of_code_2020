@@ -1,4 +1,4 @@
-package com.nohex.katas.aoc2020;
+package com.nohex.katas.aoc2020.day1;
 
 import java.util.ArrayList;
 import java.util.HashMap;

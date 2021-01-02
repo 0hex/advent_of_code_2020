@@ -1,4 +1,4 @@
-package com.nohex.katas.aoc2020;
+package com.nohex.katas.aoc2020.day2;
 
 import java.util.stream.Stream;
 
