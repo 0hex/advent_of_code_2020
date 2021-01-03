@@ -8,19 +8,22 @@ import java.util.stream.IntStream;
  */
 class RouteFinder {
 
-  // Proportion of x per each y.
-  private static final int X_FACTOR = 3;
   private final ForestLayout map;
 
   RouteFinder(ForestLayout map) {
     this.map = map;
   }
 
-  long countObstacles() {
+  long countObstacles(int xSlope, int ySlope) {
+    // Calculate the x- and y-factor for the slope.
+    double xFactor = (double) xSlope / ySlope;
+
     // Traverse map until the bottom is hit.
-    return IntStream.range(0, map.getHeight())
+    return IntStream.range(ySlope, map.getHeight())
+        // Match y rate to ySlope.
+        .filter(y -> y % ySlope == 0)
         // Get the contents of the map.
-        .mapToObj(y -> map.getAt(y * X_FACTOR, y))
+        .mapToObj(y -> map.getAt((int) Math.floor(y * xFactor), y))
         // If the map is not empty at that point...
         .filter(Optional::isPresent)
         // ... count it.
