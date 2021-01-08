@@ -3,7 +3,6 @@ package com.nohex.katas.aoc2020.day2;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.nohex.katas.aoc2020.SolutionTest;
-import com.nohex.katas.aoc2020.day2.PasswordChecker;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.logging.Logger;

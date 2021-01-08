@@ -3,7 +3,6 @@ package com.nohex.katas.aoc2020.day1;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.nohex.katas.aoc2020.SolutionTest;
-import com.nohex.katas.aoc2020.day1.NumberGroupFinder;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;

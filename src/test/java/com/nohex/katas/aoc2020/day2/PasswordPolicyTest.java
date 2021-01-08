@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
-import com.nohex.katas.aoc2020.day2.PasswordPolicy;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
