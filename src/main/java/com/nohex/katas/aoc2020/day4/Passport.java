@@ -7,11 +7,11 @@ import java.util.Optional;
  */
 interface Passport {
 
-  String getBirthYear();
+  int getBirthYear();
 
-  String getIssueYear();
+  int getIssueYear();
 
-  String getExpirationYear();
+  int getExpirationYear();
 
   String getHeight();
 

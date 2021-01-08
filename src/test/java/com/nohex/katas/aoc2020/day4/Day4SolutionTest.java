@@ -16,7 +16,7 @@ class Day4SolutionTest extends SolutionTest {
   @Test
   void given_theDay4Example_when_theExpectedResultIsProvided_then_theAnswerIsGiven()
       throws IOException {
-    Reader input = getResourceAsReader("example-day_4.txt");
+    Reader input = getResourceAsReader("day4/example.txt");
 
     List<Passport> validPassports = PassportFactory.parse(input);
 
@@ -24,10 +24,30 @@ class Day4SolutionTest extends SolutionTest {
   }
 
   @Test
+  void given_theDay4Part2Example_when_invalidDataIsProvided_then_noPassportsAreAccepted()
+      throws IOException {
+    Reader input = getResourceAsReader("day4/example-invalid_passports.txt");
+
+    List<Passport> validPassports = PassportFactory.parse(input);
+
+    assertThat(validPassports.size()).isZero();
+  }
+
+  @Test
+  void given_theDay4Part2Example_when_validDataIsProvided_then_allPassportsAreAccepted()
+      throws IOException {
+    Reader input = getResourceAsReader("day4/example-valid_passports.txt");
+
+    List<Passport> validPassports = PassportFactory.parse(input);
+
+    assertThat(validPassports.size()).isEqualTo(4);
+  }
+
+  @Test
   void given_theDay4Input_when_theExpectedResultIsProvided_then_theAnswerIsGiven()
       throws IOException {
-    // Load input from file.
-    Reader input = getResourceAsReader("input-day_4.txt");
+    // Load input.txt from file.
+    Reader input = getResourceAsReader("day4/input.txt");
 
     List<Passport> passports = PassportFactory.parse(input);
 
@@ -37,4 +57,5 @@ class Day4SolutionTest extends SolutionTest {
 
     logger.info("The result is " + count);
   }
+
 }

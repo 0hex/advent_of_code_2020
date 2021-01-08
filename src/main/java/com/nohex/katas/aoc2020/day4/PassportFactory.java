@@ -7,11 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * A factory for {@link Passport} objects.
  */
 class PassportFactory {
+
+  private static final Logger logger = Logger.getAnonymousLogger();
 
   private PassportFactory() {
     // This factory needs not being instanced.
@@ -21,7 +24,7 @@ class PassportFactory {
    * Parses textual data into passports.
    *
    * @param input The passport data.
-   * @return The valid passports that could be extracted from the input.
+   * @return The valid passports that could be extracted from the input.txt.
    */
   static List<Passport> parse(Reader input) {
     List<Passport> passports = new ArrayList<>();
@@ -67,7 +70,8 @@ class PassportFactory {
   static Optional<Passport> fromFields(Map<String, String> fields) {
     try {
       return Optional.of(new PassportImpl(fields));
-    } catch (IllegalStateException e) {
+    } catch (IllegalStateException | IllegalArgumentException e) {
+      logger.info(e::getMessage);
       return Optional.empty();
     }
   }
