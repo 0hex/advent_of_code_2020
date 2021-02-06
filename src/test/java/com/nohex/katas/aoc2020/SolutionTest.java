@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,7 +26,12 @@ abstract public class SolutionTest {
    */
   public static Stream<String> getResourceAsStream(String resourcePath)
       throws URISyntaxException, IOException {
-    Path path = Paths.get(ClassLoader.getSystemResource(resourcePath).toURI());
+    final URL resourceURL = ClassLoader.getSystemResource(resourcePath);
+    if (null == resourceURL) {
+      throw new IllegalStateException("Path not found: " + resourcePath);
+    }
+
+    Path path = Paths.get(resourceURL.toURI());
 
     return Files.lines(path);
   }
